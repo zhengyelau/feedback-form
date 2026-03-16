@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient';
-import type { Feedback, Category } from '../lib/database.types';
+import type { Feedback, Category } from '../lib/database.type';
 import { FeedbackCard } from './FeedbackCard';
 
 const CATEGORIES: (Category | 'All')[] = ['All', 'Culture', 'Workflow', 'Technical', 'Other'];
@@ -119,18 +119,18 @@ export function FeedbackList({ refreshTrigger }: FeedbackListProps) {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Filter className="w-5 h-5 text-gray-600" />
-          <label htmlFor="category-filter" className="text-sm font-medium text-gray-700">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+          <Filter className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
+          <label htmlFor="category-filter" className="text-xs sm:text-sm font-medium text-gray-700">
             Filter by Category:
           </label>
           <select
             id="category-filter"
             value={filteredCategory}
             onChange={(e) => setFilteredCategory(e.target.value as Category | 'All')}
-            className="px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+            className="px-2.5 sm:px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs sm:text-sm w-full sm:w-auto"
           >
             {CATEGORIES.map((cat) => (
               <option key={cat} value={cat}>
@@ -140,7 +140,7 @@ export function FeedbackList({ refreshTrigger }: FeedbackListProps) {
           </select>
         </div>
 
-        <span className="text-sm text-gray-600">
+        <span className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">
           {totalCount} {totalCount === 1 ? 'item' : 'items'}
         </span>
       </div>
@@ -171,24 +171,24 @@ export function FeedbackList({ refreshTrigger }: FeedbackListProps) {
           </div>
 
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-2 pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 pt-4 overflow-x-auto">
               <button
                 onClick={handlePreviousPage}
                 disabled={currentPage === 1}
-                className="flex items-center gap-1 px-3 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-xs sm:text-sm whitespace-nowrap"
                 aria-label="Previous page"
               >
-                <ChevronLeft className="w-4 h-4" />
-                <span className="text-sm font-medium">Previous</span>
+                <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline font-medium">Previous</span>
               </button>
 
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-0.5 sm:gap-1">
                 {getPageNumbers().map((page, index) => (
                   typeof page === 'number' ? (
                     <button
                       key={index}
                       onClick={() => handlePageClick(page)}
-                      className={`min-w-[40px] h-10 px-3 rounded-lg text-sm font-medium transition-all ${
+                      className={`min-w-[32px] sm:min-w-[40px] h-8 sm:h-10 px-2 sm:px-3 rounded-lg text-xs sm:text-sm font-medium transition-all ${
                         currentPage === page
                           ? 'bg-blue-600 text-white shadow-md'
                           : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
@@ -197,7 +197,7 @@ export function FeedbackList({ refreshTrigger }: FeedbackListProps) {
                       {page}
                     </button>
                   ) : (
-                    <span key={index} className="px-2 text-gray-500">
+                    <span key={index} className="px-1 text-gray-500 text-xs sm:text-sm">
                       {page}
                     </span>
                   )
@@ -207,11 +207,11 @@ export function FeedbackList({ refreshTrigger }: FeedbackListProps) {
               <button
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
-                className="flex items-center gap-1 px-3 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-xs sm:text-sm whitespace-nowrap"
                 aria-label="Next page"
               >
-                <span className="text-sm font-medium">Next</span>
-                <ChevronRight className="w-4 h-4" />
+                <span className="hidden sm:inline font-medium">Next</span>
+                <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
             </div>
           )}

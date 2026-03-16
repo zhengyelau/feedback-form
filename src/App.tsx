@@ -21,38 +21,38 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <header className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <Users className="w-8 h-8 text-blue-600" />
-            <h1 className="text-4xl font-bold text-gray-900">Team Feedback Loop</h1>
+        <header className="text-center mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+            <Users className="w-7 h-7 sm:w-8 sm:h-8 text-blue-600" />
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Team Feedback Loop</h1>
           </div>
-          <p className="text-gray-600">Share your thoughts anonymously and help improve our team</p>
+          <p className="text-sm sm:text-base text-gray-600">Share your thoughts anonymously and help improve our team</p>
         </header>
 
         <InstructionCard currentView={currentView} />
 
-        <div className="flex justify-center gap-3 mb-8">
+        <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
           <button
             onClick={() => setCurrentView('submit')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 ${
+            className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium transition-all transform hover:scale-105 w-full sm:w-auto ${
               currentView === 'submit'
                 ? 'bg-blue-600 text-white shadow-lg scale-105'
                 : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-gray-400'
             }`}
           >
-            <MessageSquarePlus className="w-5 h-5" />
-            Submit Feedback
+            <MessageSquarePlus className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="text-sm sm:text-base">Submit Feedback</span>
           </button>
           <button
             onClick={() => setCurrentView('wall')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 ${
+            className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium transition-all transform hover:scale-105 w-full sm:w-auto ${
               currentView === 'wall'
                 ? 'bg-blue-600 text-white shadow-lg scale-105'
                 : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-gray-400'
             }`}
           >
-            <Eye className="w-5 h-5" />
-            View Wall
+            <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="text-sm sm:text-base">View Wall</span>
           </button>
         </div>
 
@@ -63,7 +63,7 @@ function App() {
             </div>
           ) : (
             <div key="wall" className="animate-fadeIn">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">The Wall</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">The Wall</h2>
               <FeedbackList refreshTrigger={refreshTrigger} />
             </div>
           )}

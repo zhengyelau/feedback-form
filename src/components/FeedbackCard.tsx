@@ -141,65 +141,65 @@ export function FeedbackCard({ feedback, onVoteUpdate }: FeedbackCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-      <div className="flex items-start justify-between mb-3">
-        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(feedback.category)}`}>
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 hover:shadow-md transition-shadow">
+      <div className="flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-0 mb-3">
+        <span className={`px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(feedback.category)}`}>
           {feedback.category}
         </span>
         <span className="text-xs text-gray-500">{formatDate(feedback.created_at)}</span>
       </div>
 
-      <p className="text-gray-800 mb-4 leading-relaxed">{feedback.content}</p>
+      <p className="text-sm sm:text-base text-gray-800 mb-4 leading-relaxed">{feedback.content}</p>
 
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <button
             onClick={() => handleVote('upvote')}
             disabled={userVote === 'upvote'}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
+            className={`flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg transition-colors ${
               userVote === 'upvote'
                 ? 'bg-green-100 text-green-700'
                 : 'bg-gray-100 text-gray-600 hover:bg-green-50 hover:text-green-600'
             } disabled:cursor-not-allowed`}
             aria-label="Upvote"
           >
-            <ThumbsUp className="w-4 h-4" />
-            <span className="text-sm font-medium">{feedback.upvotes}</span>
+            <ThumbsUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <span className="text-xs sm:text-sm font-medium">{feedback.upvotes}</span>
           </button>
 
           <button
             onClick={() => handleVote('downvote')}
             disabled={userVote === 'downvote'}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
+            className={`flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg transition-colors ${
               userVote === 'downvote'
                 ? 'bg-red-100 text-red-700'
                 : 'bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-red-600'
             } disabled:cursor-not-allowed`}
             aria-label="Downvote"
           >
-            <ThumbsDown className="w-4 h-4" />
-            <span className="text-sm font-medium">{feedback.downvotes}</span>
+            <ThumbsDown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <span className="text-xs sm:text-sm font-medium">{feedback.downvotes}</span>
           </button>
         </div>
 
         <button
           onClick={() => setShowComments(!showComments)}
-          className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+          className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
         >
-          <MessageCircle className="w-4 h-4" />
-          <span className="text-sm font-medium">{commentCount}</span>
+          <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <span className="text-xs sm:text-sm font-medium">{commentCount}</span>
         </button>
       </div>
 
       {showComments && (
         <div className="mt-4 pt-4 border-t border-gray-200">
-          <div className="space-y-3 mb-4">
+          <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
             {comments.length === 0 ? (
-              <p className="text-sm text-gray-500 italic">No comments yet. Be the first to comment!</p>
+              <p className="text-xs sm:text-sm text-gray-500 italic">No comments yet. Be the first to comment!</p>
             ) : (
               comments.map((comment) => (
-                <div key={comment.id} className="bg-gray-50 rounded-lg p-3">
-                  <div className="flex items-center gap-2 mb-1">
+                <div key={comment.id} className="bg-gray-50 rounded-lg p-2.5 sm:p-3">
+                  <div className="flex flex-wrap items-center gap-1.5 mb-1">
                     <span className="text-xs font-semibold text-blue-600">
                       {comment.anonymous_name}
                     </span>
@@ -208,26 +208,26 @@ export function FeedbackCard({ feedback, onVoteUpdate }: FeedbackCardProps) {
                       {formatDate(comment.created_at)}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-800">{comment.content}</p>
+                  <p className="text-xs sm:text-sm text-gray-800">{comment.content}</p>
                 </div>
               ))
             )}
           </div>
 
-          <form onSubmit={handleSubmitComment} className="flex gap-2">
+          <form onSubmit={handleSubmitComment} className="flex gap-1.5 sm:gap-2">
             <input
               type="text"
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               placeholder="Add a comment..."
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+              className="flex-1 px-2.5 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs sm:text-sm"
             />
             <button
               type="submit"
               disabled={!newComment.trim() || isSubmittingComment}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+              className="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
             >
-              <Send className="w-4 h-4" />
+              <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
           </form>
         </div>
