@@ -2,6 +2,8 @@
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Running the Project](#development)
+- [Database screenshot](#preview)
+- [Trade Off](#trade-offs)
 
 ## Prerequisites
 
