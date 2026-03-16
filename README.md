@@ -20,10 +20,9 @@ npm install
 npm run dev
 ```
 
+The app will be available at `http://localhost:5173`
+
 ## Preview
 
 ![Comments Screenshot](https://raw.githubusercontent.com/zhengyelau/feedback-form/main/comments.png)
 ![Comments Screenshot](https://raw.githubusercontent.com/zhengyelau/feedback-form/main/feedback.png)
-
-
-The app will be available at `http://localhost:5173`
