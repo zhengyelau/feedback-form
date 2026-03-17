@@ -24,10 +24,12 @@ npm run dev
 
 The app will be available at `http://localhost:5173`
 
-## Preview
-
-![Comments Screenshot](https://raw.githubusercontent.com/zhengyelau/feedback-form/main/comments.png)
+## Preview database table
+### Feedback table
 ![Comments Screenshot](https://raw.githubusercontent.com/zhengyelau/feedback-form/main/feedback.png)
+### Comments table
+![Comments Screenshot](https://raw.githubusercontent.com/zhengyelau/feedback-form/main/comments.png)
+
 
 ## Trade-offs
 
