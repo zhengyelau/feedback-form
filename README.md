@@ -52,3 +52,4 @@ This approach allows:
 - No need to implement a full authentication system
 
 The trade-off is that the identity is stored only in the user's browser. If the user clears their browser storage or uses a different device, a new anonymous identity will be generated.
+# test-cloud-flare-r2
