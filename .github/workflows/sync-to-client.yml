@@ -1,0 +1,43 @@
+name: Sync to Client Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Vendor Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "zhengye"
+          git config --global user.email "zhengyelau@hotmail.com"
+
+      - name: Check token exists
+        env:
+          TOKEN: ${{ secrets.CLIENT_REPO_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "TOKEN is MISSING"
+            exit 1
+          else
+            echo "TOKEN is PRESENT"
+          fi
+
+      - name: Push to Client Repository
+        env:
+          TOKEN: ${{ secrets.CLIENT_REPO_TOKEN }}
+        run: |
+          set -e
+
+          git remote add client https://x-access-token:${TOKEN}@github.com/sl-zhengye/test-github-repo-push.git
+
+          git push client main:develop --force
