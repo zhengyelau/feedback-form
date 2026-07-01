@@ -19,7 +19,7 @@ jobs:
       - name: Configure Git
         run: |
           git config --global user.name "zhengye"
-          git config --global user.email "zhengyelau@hotmail.com"
+          git config --global user.email ${{ secrets.EMAIL_ADDRESS }}
 
       - name: Check token exists
         env:
